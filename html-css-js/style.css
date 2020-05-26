@@ -1,0 +1,11 @@
+.titulo {
+    background-color: blueviolet; 
+    cursor: pointer;
+}
+.titulo-mega-grande{
+    font-size: 6em;
+}
+#meuparagrafo{
+    font-size: 3em;
+    
+}
