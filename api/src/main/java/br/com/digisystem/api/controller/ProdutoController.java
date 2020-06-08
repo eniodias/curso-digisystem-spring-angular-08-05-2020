@@ -52,25 +52,17 @@ public class ProdutoController {
 	//PUT ou PATCH
 	@PutMapping ( value = "produtos/{id}" )
 	public Produto update( @PathVariable("id") int id, @RequestBody Produto p ) {
-		//obj antigo
-		Produto old = listaProduto.get(id);
-		//atualizar objeto antigo
-		old.setNome( p.getNome() );
-		old.setPreco( p.getPreco() );
-		//atualizar lista
-		listaProduto.set(id, old);
-		//retorna novo obj
-		return old;
+
+		return this.produtoService.update(id, p);
 		
-	}
+		
+		}
 	
 	@DeleteMapping ( value = "produtos/{id}" )
-	public void delete( @PathVariable("id") int id ) {
+	public boolean delete( @PathVariable("id") int id ) {
 		
-		System.out.println( id );
-		
-		//this.produtoService.
-	
+		return this.produtoService.deleteById(id);
 	}
+	
 	
 }
