@@ -18,7 +18,13 @@ public class ProdutoService {
 	public List<Produto> findAll() {
 		return this.produtoRepository.findAll();
 	}
-
+	
+	public Optional<Produto> findById(int id) {
+		return this.produtoRepository.findById(id);
+		// retorno produto sem optional 
+		//return this.produtoRepository.findById(id).get();
+	}
+	
 	public Produto create(Produto p) {
 		return this.produtoRepository.save(p);
 	}

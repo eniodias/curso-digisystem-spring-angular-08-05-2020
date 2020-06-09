@@ -38,7 +38,7 @@ public class ProdutoController {
 	@GetMapping( value = "produtos/{id}" )
 	public Produto get( @PathVariable("id") int idProduto ) {
 		
-		return this.produtoService.get(idProduto);
+		return this.produtoService.findById(idProduto).orElse(new Produto(1000,"NOME",1000));
 				
 	}
 	
@@ -55,7 +55,6 @@ public class ProdutoController {
 
 		return this.produtoService.update(id, p);
 		
-		
 		}
 	
 	@DeleteMapping ( value = "produtos/{id}" )
@@ -64,5 +63,10 @@ public class ProdutoController {
 		return this.produtoService.deleteById(id);
 	}
 	
-	
+	@GetMapping( value = "produtos/search/{nome}" )
+	public List<Produto> getByName( @PathVariable("nome") String nome ) {
+		
+		return this.produtoService.findByNome(nome);
+				
+	}
 }
