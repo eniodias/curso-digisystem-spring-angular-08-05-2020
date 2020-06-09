@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.digisystem.api.model.Produto;
@@ -63,10 +64,24 @@ public class ProdutoController {
 		return this.produtoService.deleteById(id);
 	}
 	
-	@GetMapping( value = "produtos/search/{nome}" )
-	public List<Produto> getByName( @PathVariable("nome") String nome ) {
+	@GetMapping( value = "produtos/search/{nome}/{preco}" )
+	public List<Produto> getByName( @PathVariable("nome") String nome, 
+			@PathVariable("preco") double preco ,
+			@RequestParam( value = "fcid", defaultValue = "N~ao veio" ) String fcid) {
 		
-		return this.produtoService.findByNome(nome);
+		System.out.println( fcid );
+		return this.produtoService.findByNome(nome,preco);
 				
+	}
+	
+
+	
+	@GetMapping( value = "produtos/search/{nome}" )
+	public List<Produto> getByNameWithouPreco( 			
+			@PathVariable("nome") String nome,			
+			@RequestParam(value = "fcid", defaultValue = "") String fcid 
+		) {
+		System.out.println( fcid );
+		return this.produtoService.findByNome( nome, 0 );		
 	}
 }

@@ -11,5 +11,5 @@ import br.com.digisystem.api.model.Produto;
 public interface ProdutoRepository extends JpaRepository<Produto, Integer>{
 
 	// SELECT * FROM Produto WHERE nome = {search}
-	public List<Produto> findByNome (String nome);
+	public List<Produto> findByNomeLikeAndPrecoGreaterThan(String nome, double preco);
 }

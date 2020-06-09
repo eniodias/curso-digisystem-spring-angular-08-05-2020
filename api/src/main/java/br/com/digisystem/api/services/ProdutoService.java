@@ -54,8 +54,8 @@ public class ProdutoService {
 		return this.produtoRepository.getOne(id);
 	}
 	
-	public List<Produto> findByNome( String nome ) {
-		return this.produtoRepository.findByNome(nome);
+	public List<Produto> findByNome( String nome, double preco ) {
+		return this.produtoRepository.findByNomeLikeAndPrecoGreaterThan(nome,preco);
 	}
 	
 	
