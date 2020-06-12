@@ -1,9 +1,12 @@
 package br.com.digisystem.api.controller;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.digisystem.api.model.Produto;
 import br.com.digisystem.api.services.ProdutoService;
+import br.com.digisystem.api.services.exceptions.ObjectNotFoundDigiException;
 
 @RestController
 public class ProdutoController {
@@ -30,19 +34,25 @@ public class ProdutoController {
 
 	//@RequestMapping( method = RequestMethod.GET, value = "primeiro" )
 	@GetMapping( value = "produtos" )
-	public List<Produto> getAll() {
+	public ResponseEntity < List<Produto> > getAll() {
 		
-		return this.produtoService.findAll();
+		List<Produto> list = this.produtoService.findAll();
 		
+		return ResponseEntity.ok().body( list );
 	}
 	
 	@GetMapping( value = "produtos/{id}" )
-	public Produto get( @PathVariable("id") int idProduto ) {
+	public ResponseEntity <Produto> get( @PathVariable("id") int idProduto ) {
 		
-		return this.produtoService.findById(idProduto).orElse(new Produto(1000,"NOME",1000));
-				
+		//return this.produtoService.findById(idProduto).orElse( new Produto(1000,"NOME", 1000) );
+		
+		Produto p = this.produtoService.findById(idProduto)
+				.orElseThrow( 
+						() -> new ObjectNotFoundDigiException("ID do produto não encontrado!") 
+				);
+		return ResponseEntity.status( HttpStatus.OK ).body( p );	
 	}
-	
+
 	@PostMapping ( value = "produtos" )
 	public Produto create( @RequestBody Produto p  ) {
 	
