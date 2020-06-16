@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -77,10 +75,10 @@ public class ProdutoController {
 	@GetMapping( value = "produtos/search/{nome}/{preco}" )
 	public List<Produto> getByName( @PathVariable("nome") String nome, 
 			@PathVariable("preco") double preco ,
-			@RequestParam( value = "fcid", defaultValue = "N~ao veio" ) String fcid) {
+			@RequestParam( value = "fcid", defaultValue = "Não veio" ) String fcid) {
 		
 		System.out.println( fcid );
-		return this.produtoService.findByNome(nome,preco);
+		return this.produtoService.findByNome(nome);
 				
 	}
 	
@@ -92,6 +90,6 @@ public class ProdutoController {
 			@RequestParam(value = "fcid", defaultValue = "") String fcid 
 		) {
 		System.out.println( fcid );
-		return this.produtoService.findByNome( nome, 0 );		
+		return this.produtoService.findByNome( nome);		
 	}
 }

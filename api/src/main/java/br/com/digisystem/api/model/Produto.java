@@ -10,13 +10,19 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
 @EqualsAndHashCode (onlyExplicitlyIncluded = true)
+@AllArgsConstructor
+@NoArgsConstructor
 
 @Entity
 public class Produto {
@@ -34,6 +40,7 @@ public class Produto {
 			joinColumns = @JoinColumn (name="product_id"),
 			inverseJoinColumns = @JoinColumn(name="categoria_id")
 			)
+	@JsonIgnore
 	private List<Categoria> categorias;
 		
 }
