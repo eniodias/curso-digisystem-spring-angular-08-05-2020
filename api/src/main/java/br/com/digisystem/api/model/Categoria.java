@@ -6,34 +6,37 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 @Data
-@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode (onlyExplicitlyIncluded = true)
+@Builder
 
 @Entity
-public class Produto {
-
+public class Categoria {
+	
+	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	@EqualsAndHashCode.Include
 	private int id;
 	private String nome;
-	private double preco;
+	private String descricao;
 	
-	@ManyToMany
-	@JoinTable (
-			name = "produtos_categorias",
-			joinColumns = @JoinColumn (name="product_id"),
-			inverseJoinColumns = @JoinColumn(name="categoria_id")
-			)
-	private List<Categoria> categorias;
-		
+	@ManyToMany( mappedBy = "categorias" )	
+	@JsonIgnore
+	private List<Produto> produtos;
+	
+	
+
 }
