@@ -1,18 +1,41 @@
-
 package br.com.digisystem.api.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import br.com.digisystem.api.security.JWTAutenticacaoFiltro;
+import br.com.digisystem.api.security.JWTUtil;
+import br.com.digisystem.api.services.CredentialDetailsServiceImpl;
 
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @Configuration
 @EnableWebSecurity
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
+	
+	@Autowired
+	private CredentialDetailsServiceImpl userDetailsService;
+		
+	@Autowired
+	private JWTUtil jwtUtil;
+		
+	@Bean
+	public BCryptPasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+	
+	@Bean
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
 	
 
 	private static final String[] PUBLIC_ENDPOINTS = {
@@ -25,11 +48,11 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	};
 	
 	private static final String[] PUBLIC_ENDPOINTS_GET = {
-			"/produtos/**", "/produtos/page"
+			"/produtos/**"
 	};
 
 	private static final String[] PUBLIC_ENDPOINTS_POST = {
-			"/autenticacao", "/usuarios" 
+			"/auth/**"
 	};
 	
 	 @Override
@@ -55,7 +78,10 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
          .and()
          //gerenciamenteo de sessão STATELESS
          .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		 
+		 /* adicionado o filtro de autenticação*/
+		 http.addFilter(new JWTAutenticacaoFiltro(authenticationManager(), jwtUtil));
+		 
 	 }
 
 }
-

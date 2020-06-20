@@ -34,6 +34,8 @@ public class Cliente {
 	
 	private String nome;
 	private String email;
+	//@JsonProperty(access = Access.WRITE_ONLY)
+	private String senha;
 	private String cpf;
 	
 	@OneToMany( mappedBy = "cliente" )

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.digisystem.api.dto.ClienteDTO;
 import br.com.digisystem.api.model.Cliente;
 import br.com.digisystem.api.services.ClienteService;
 import br.com.digisystem.api.services.exceptions.ObjectNotFoundDigiException;
@@ -32,9 +33,9 @@ public class ClienteController {
 
 		//@RequestMapping( method = RequestMethod.GET, value = "primeiro" )
 		@GetMapping( value = "clientes" )
-		public ResponseEntity < List<Cliente> > getAll() {
+		public ResponseEntity < List<ClienteDTO> > getAll() {
 			
-			List<Cliente> list = this.clienteService.findAll();
+			List<ClienteDTO> list = this.clienteService.findAll();
 			
 			return ResponseEntity.ok().body( list );
 		}

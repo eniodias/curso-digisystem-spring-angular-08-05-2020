@@ -7,6 +7,7 @@ import java.util.HashSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import br.com.digisystem.api.model.Categoria;
@@ -24,6 +25,9 @@ import br.com.digisystem.api.repositories.ProdutoRepository;
 
 @Service
 public class PopularBancoService {
+	
+	@Autowired
+	 BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	@Autowired
 	private ProdutoRepository produtoRepository;
@@ -107,6 +111,7 @@ public class PopularBancoService {
 					.cpf("25360975016")
 					.email("cliente@springboot.com")
 					.nome("Cliente 1")
+					.senha( this.bCryptPasswordEncoder.encode( "123456" ) )
 					.telefone(   new HashSet<>( telefones )  )
 					.build();
 
