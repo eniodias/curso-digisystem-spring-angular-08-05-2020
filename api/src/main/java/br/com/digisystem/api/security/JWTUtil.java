@@ -9,9 +9,11 @@ import org.springframework.stereotype.Component;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import lombok.extern.slf4j.Slf4j;
 /*
  * Componente responsável por gerar, validar o token (jwt)
  * */
+@Slf4j
 @Component
 public class JWTUtil {
 	
