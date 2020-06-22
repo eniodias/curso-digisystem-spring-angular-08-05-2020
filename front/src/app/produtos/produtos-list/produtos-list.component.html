@@ -1,1 +1,49 @@
 <p>produtos-list works!</p>
+
+<p> {{ produtos | json }}</p>
+
+<p>
+    <button class="btn-primary" (click)="onTabelaClick()" > Tabela </button>
+  </p>
+  
+  <!-- diretivas -->
+  <table class="table" *ngIf="isShow == true">
+  
+    <tr>
+      <th> ID </th>
+      <th>Nome</th>
+      <th>Preço</th>
+    </tr>
+  
+    <tr *ngFor=" let p of produtos" >
+      <td> {{  p.id  }} </td>
+      <td> {{  p.nome  }} </td>
+      <td> {{  p.preco  }} </td>
+    </tr>
+  
+</table>
+
+
+<div [ngClass]="{'alert': isShow, 'alert-primary': isShow == false}"
+  [ngStyle]="{'display': 'block', 'font-size' : '30px'}" >
+  Com NgClass
+</div>
+
+<div [ngClass]="{'alert':true, 'alert-primary': true}"> Com NgClass</div>
+
+<div [ngClass]="minhaClasse" role="alert" *ngIf="minhaClasse.length > 0">
+  This is an alert—check it out!
+</div>
+
+
+<label class="my-1 mr-2"  > Preference </label>
+<select #meuSelect class="custom-select my-1 mr-sm-2" (change)="onSelectedBox( meuSelect.value )" >
+  <option selected>Choose...</option>
+  <option value="alert alert-primary"> Primary </option>
+  <option value="alert alert-secondary"> Secondary </option>
+  <option value="alert alert-info"> Info </option>
+</select>
+
+<p> Valor selecionado : {{ meuSelect.value }} </p>
+
+
