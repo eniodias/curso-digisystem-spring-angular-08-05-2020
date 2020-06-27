@@ -13,15 +13,19 @@
       <th> ID </th>
       <th>Nome</th>
       <th>Preço</th>
+      <th>Mais detalhes</th>
     </tr>
   
     <tr *ngFor=" let p of produtos" >
       <td> {{  p.id  }} </td>
       <td> {{  p.nome  }} </td>
       <td> {{  p.preco  }} </td>
+      <td> <button (click)="maisDetalhes(p)" > Ver </button> </td>
     </tr>
   
 </table>
+
+<app-produto-detalhe  [produtoSelecionadoFilho]="produtoSelecionadoPai"   ></app-produto-detalhe>
 
 
 <div [ngClass]="{'alert': isShow, 'alert-primary': isShow == false}"
@@ -45,5 +49,3 @@
 </select>
 
 <p> Valor selecionado : {{ meuSelect.value }} </p>
-
-

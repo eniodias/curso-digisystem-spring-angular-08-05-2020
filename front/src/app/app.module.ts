@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { SegundoComponent } from './segundo/segundo.component';
 import { PrimeiroComponent } from './primeiro/primeiro.component';
 import { ProdutosModule } from './produtos/produtos.module';
-import { HightlightDirective } from './hightlight.directive';
+import { HightlightDirective } from './diretivas/hightlight.directive';
 
 @NgModule({
   declarations: [

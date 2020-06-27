@@ -22,10 +22,11 @@ export class AppComponent {
     alert ('Event Bidind');
   }
 
+  
   onKeyup( inputText ){
     //let cor = 'yellow';
     this.meuTexto = inputText;
     console.log ( inputText );
   }
-  
+
 }

@@ -9,6 +9,8 @@ export class ProdutosListComponent implements OnInit {
 
   isShow = true;
   minhaClasse : string = '';
+  produtoSelecionadoPai : any;
+
 
   produtos = [
     { id : 1, nome: 'Produto 1', preco: 100 },
@@ -32,5 +34,8 @@ export class ProdutosListComponent implements OnInit {
     this.minhaClasse = selecionado;
   }
 
-
+  maisDetalhes( produto  ){
+    alert( produto.nome );
+    this.produtoSelecionadoPai = produto;
+  }
 }
