@@ -1,39 +1,54 @@
+
 <p>produtos-list works!</p>
 
-<p> {{ produtos | json }}</p>
+<div class="row justify-content-center">
+  <a href="/home"  class="btn btn-info"> Home </a>
+</div>
 
 <p>
-    <button class="btn-primary" (click)="onTabelaClick()" > Tabela </button>
-  </p>
-  
-  <!-- diretivas -->
-  <table class="table" *ngIf="isShow == true">
-  
-    <tr>
-      <th> ID </th>
-      <th>Nome</th>
-      <th>Preço</th>
-      <th>Mais detalhes</th>
-    </tr>
-  
-    <tr *ngFor=" let p of produtos" >
-      <td> {{  p.id  }} </td>
-      <td> {{  p.nome  }} </td>
-      <td> {{  p.preco  }} </td>
-      <td> <button (click)="maisDetalhes(p)" > Ver </button> </td>
-    </tr>
-  
+  <button class="btn btn-primary" (click)="onTabelaClick()" > Tabela </button>
+</p>
+
+<!-- diretivas -->
+<table class="table" *ngIf="isShow == true">
+
+  <tr>
+    <th> ID </th>
+    <th>Nome</th>
+    <th>Preço</th>
+    <th> Mais Detalhes </th>
+  </tr>
+
+  <tr *ngFor=" let p of produtos" >
+    <td> {{  p.id  }} </td>
+    <td> {{  p.nome  }} </td>
+    <td> {{  p.preco  }} </td>
+    <td> <button (click)="maisDetalhes( p )" > Ver </button> </td>
+  </tr>
+
 </table>
 
-<app-produto-detalhe  [produtoSelecionadoFilho]="produtoSelecionadoPai"   ></app-produto-detalhe>
+<app-produto-detalhe
+[produtoSelecionadoFilho]="produtoSelecionadoPai"
+(notificador)="receberEventoPai( $event )"
+></app-produto-detalhe>
+
+<div class="row justify-content-center">
+  <app-produto-detalhe
+  [produtoSelecionadoFilho]="produtoSelecionadoPai"
+  (notificador)="receberEventoPai( $event )"
+  ></app-produto-detalhe>
+</div>
 
 
-<div [ngClass]="{'alert': isShow, 'alert-primary': isShow == false}"
+<div [class.alert]="true" [class.alert-primary]="false" role="alert" >
+  This is an alert—check it out! - Sem NgClass
+</div>
+
+<div [ngClass]="{ 'alert': true, 'alert-primary': false }"
   [ngStyle]="{'display': 'block', 'font-size' : '30px'}" >
   Com NgClass
 </div>
-
-<div [ngClass]="{'alert':true, 'alert-primary': true}"> Com NgClass</div>
 
 <div [ngClass]="minhaClasse" role="alert" *ngIf="minhaClasse.length > 0">
   This is an alert—check it out!
@@ -49,3 +64,4 @@
 </select>
 
 <p> Valor selecionado : {{ meuSelect.value }} </p>
+

@@ -1,20 +1,18 @@
-<p>produto-detalhe works!</p>
+<div class="card" style="width: 18rem;" >
+  <div class="card-body">
+    <h5 class="card-title">Descrição do Produto</h5>
 
- <!-- NULL SAFETY ? -->>
- <!--<div class="card" style="width: 18rem;" *ngIf="produtoSelecionadoFilho"> -->
 
-<div class="card" style="width: 18rem;">
-    <div class="card-body">
-      <h5 class="card-title">Descrição do Produto</h5>
-  
-  <!-- NULL SAFETY ? -->>
-      <p class="card-text" > Id:   {{ produtoSelecionadoFilho?.id }} </p>
-      <p class="card-text"> Nome:   {{ produtoSelecionadoFilho?.nome }} </p>
-      <p class="card-text"> Preço:   {{ produtoSelecionadoFilho?.preco }} </p>
-  
-      <p> UPPER CASE: {{ upperCaseNome() }} </p>
+    <!-- <p class="card-text" > Id:   {{ (produtoSelecionadoFilho != null ? produtoSelecionadoFilho.id : '') }} </p> -->
 
-    </div>
+    <!-- null safety -->
+    <p class="card-text" > Id:   {{ produtoSelecionadoFilho?.id }} </p>
+    <p class="card-text"> Nome:   {{ produtoSelecionadoFilho?.nome }} </p>
+    <p class="card-text"> Preço:   {{ produtoSelecionadoFilho?.preco }} </p>
+
+    <p> UPPER CASE: {{ upperCaseNome() }} </p>
   </div>
+</div>
 
-  
+<div class= row justify ></div>
+<button class="btn btn-primary" (click)="notificarPai()"  > Notificar Pai </button>

@@ -1,4 +1,7 @@
+
+
 import { Component, OnInit } from '@angular/core';
+import { ProdutoService } from '../produto.service';
 
 @Component({
   selector: 'app-produtos-list',
@@ -7,35 +10,46 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProdutosListComponent implements OnInit {
 
-  isShow = true;
+  isShow : boolean = true;
   minhaClasse : string = '';
-  produtoSelecionadoPai : any;
+  produtoSelecionadoPai : any = null;
 
+  produtos : any;
 
-  produtos = [
-    { id : 1, nome: 'Produto 1', preco: 100 },
-    { id : 2, nome: 'Produto 2', preco: 200 },
-    { id : 3, nome: 'Produto 3', preco: 300 },
-    { id : 4, nome: 'Produto 4', preco: 400 }
-  ];
-
-  constructor() { }
+  constructor(private produtoService : ProdutoService) { }
 
   ngOnInit(): void {
+    this.produtoService.getAll()
+      .subscribe(
+        ( resp ) => {
+          console.log( resp );
+          this.produtos = resp;
+        },
+        ( error ) => {
+          console.log ( error );
+          alert (error.status);
+        }
+      );
   }
 
   onTabelaClick(){
     this.isShow = !this.isShow;
   }
 
-  
   onSelectedBox( selecionado ){
-    alert ( selecionado );
+    //alert ( selecionado );
     this.minhaClasse = selecionado;
   }
 
   maisDetalhes( produto  ){
-    alert( produto.nome );
+    //alert( produto.nome );
     this.produtoSelecionadoPai = produto;
   }
+
+  receberEventoPai( valor ){
+    alert ( valor );
+  }
+
 }
+
+
