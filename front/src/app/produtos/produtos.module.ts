@@ -6,16 +6,20 @@ import { ProdutosListComponent } from './produtos-list/produtos-list.component';
 import { ProdutoDetalheComponent } from './produto-detalhe/produto-detalhe.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProdutoService } from './produto.service';
+import { ProdutoFormComponent } from './produto-form/produto-form.component';
+import { FormsModule, ReactiveFormsModule, FormBuilder } from '@angular/forms';
 
 @NgModule({
-  declarations: [ProdutosListComponent, ProdutoDetalheComponent],
+  declarations: [ProdutosListComponent, ProdutoDetalheComponent, ProdutoFormComponent],
   imports: [
     CommonModule,
     ProdutosRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports:[
     ProdutosListComponent
-  ],providers:[ProdutoService]
+  ],providers:[ProdutoService,FormBuilder]
 })
 export class ProdutosModule { }

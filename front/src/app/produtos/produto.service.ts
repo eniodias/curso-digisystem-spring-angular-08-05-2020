@@ -27,6 +27,7 @@ export class ProdutoService {
   // }
 
   get( id ){
-    return this.http.get ( `http://localhost:8080/produtos/${id}` );
+    //return this.http.get ( `http://localhost:8080/produtos/${id}` );
+    return this.http.get ( `https://api.fabrizioborelli.com.br/digisystem/produtos/${id}` );
   }
 }
