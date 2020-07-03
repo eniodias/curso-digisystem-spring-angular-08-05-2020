@@ -12,23 +12,21 @@ export class ProdutoFormComponent implements OnInit {
 
   formulario : FormGroup;
 
-  constructor( 
-    
-    private activatedRoute : ActivatedRoute ,
-    private produtoService : ProdutoService ,
+  constructor(
+    private activatedRoute : ActivatedRoute,
+    private produtoService : ProdutoService,
     private formBuilder : FormBuilder
-    
-    ) {
-      
-  
-      this.formulario = this.formBuilder
+      ) {
+
+        this.formulario = this.formBuilder
           .group(
             {
-              emailControl : [  null , [ Validators.required ]  ]
+              emailControl : [  null , [ Validators.required, Validators.minLength( 3 ) ]  ],
+              passwordControl : [ null, [ Validators.required  ] ]
             }
         );
 
-    }
+  }
 
   ngOnInit(): void {
     this.activatedRoute.params
@@ -48,6 +46,11 @@ export class ProdutoFormComponent implements OnInit {
         console.log ( response );
       }
     );
+  }
+
+
+  isFieldValid( nomeField ){
+    return !this.formulario.get( nomeField ).valid && this.formulario.get( nomeField ).touched;
   }
 
   onSubmit(){

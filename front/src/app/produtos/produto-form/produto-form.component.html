@@ -5,11 +5,19 @@
       formControlName="emailControl"
       aria-describedby="emailHelp" placeholder="Enter email">
       <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+      {{ formulario.controls.emailControl.valid }}
+
+      <app-form-errors [isError]="isFieldValid('emailControl')"  ></app-form-errors>
+
+    
     </div>
     <div class="form-group">
       <label for="exampleInputPassword1">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+      <input type="password" class="form-control" formControlName="passwordControl" placeholder="Password">
+      {{ formulario.controls.passwordControl.valid }}
+      <app-form-errors [isError]="isFieldValid('passwordControl')"  ></app-form-errors>
     </div>
+    
     <div class="form-check">
       <input type="checskbox" class="form-check-input" id="exampleCheck1">
       <label class="form-check-label" for="exampleCheck1">Check me out</label>
