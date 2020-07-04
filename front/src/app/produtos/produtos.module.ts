@@ -8,16 +8,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProdutoService } from './produto.service';
 import { ProdutoFormComponent } from './produto-form/produto-form.component';
 import { FormsModule, ReactiveFormsModule, FormBuilder } from '@angular/forms';
-import { FormErrorsComponent } from './form-errors/form-errors.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  declarations: [ProdutosListComponent, ProdutoDetalheComponent, ProdutoFormComponent, FormErrorsComponent],
+  declarations: [ProdutosListComponent, ProdutoDetalheComponent, ProdutoFormComponent],
   imports: [
     CommonModule,
     ProdutosRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule
+    SharedModule
+
   ],
   exports:[
     ProdutosListComponent

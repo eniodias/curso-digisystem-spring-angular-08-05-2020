@@ -30,4 +30,22 @@ export class ProdutoService {
     //return this.http.get ( `http://localhost:8080/produtos/${id}` );
     return this.http.get ( `https://api.fabrizioborelli.com.br/digisystem/produtos/${id}` );
   }
+
+  update( id, produto ){
+    return this.http
+    .put ( `https://api.fabrizioborelli.com.br/digisystem/produtos/${id}`, produto );
+  }
+
+
+    create( produto ){
+    return this.http
+    .post ( `https://api.fabrizioborelli.com.br/digisystem/produtos`, produto );
+  }
+  
+ delete( id ){
+    //return this.http.get ( `http://localhost:8080/produtos/${id}` );
+    return this.http
+    .delete ( `https://api.fabrizioborelli.com.br/digisystem/produtos/${id}` );
+  }
+
 }

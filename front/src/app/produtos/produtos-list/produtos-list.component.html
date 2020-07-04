@@ -1,13 +1,9 @@
 
-<p>produtos-list works!</p>
+<!-- <p>produtos-list works!</p> -->
 
-<div class="row justify-content-center">
-  <a href="/home"  class="btn btn-info"> Home </a>
+<div class="float-right mt-3 mb-3">
+  <a [routerLink]="['/produtos/novo']" class="btn btn-primary"> Novo </a>
 </div>
-
-<p>
-  <button class="btn btn-primary" (click)="onTabelaClick()" > Tabela </button>
-</p>
 
 <!-- diretivas -->
 <table class="table" *ngIf="isShow == true">
@@ -23,25 +19,30 @@
     <td> {{  p.id  }} </td>
     <td> {{  p.nome  }} </td>
     <td> {{  p.preco  }} </td>
-    <td> <button (click)="maisDetalhes( p )" > Ver </button> </td>
+    <td>
+
+      <!-- <button class="btn btn-info"
+      (click)="editar( p )" > Editar </button> -->
+
+      <a class="btn btn-info mr-2" [routerLink]="['/produtos', p.id]" > Editar </a>
+      <button class="btn btn-danger" (click)="delete( p.id )"  > Deletar </button>
+    </td>
   </tr>
 
 </table>
 
-<app-produto-detalhe
-[produtoSelecionadoFilho]="produtoSelecionadoPai"
-(notificador)="receberEventoPai( $event )"
-></app-produto-detalhe>
+<!-- <p>
+  <button class="btn btn-primary" (click)="onTabelaClick()" > Tabela </button>
+</p> -->
 
-<div class="row justify-content-center">
+<!-- <div class="row justify-content-center">
   <app-produto-detalhe
   [produtoSelecionadoFilho]="produtoSelecionadoPai"
   (notificador)="receberEventoPai( $event )"
   ></app-produto-detalhe>
-</div>
+</div> -->
 
-
-<div [class.alert]="true" [class.alert-primary]="false" role="alert" >
+<!-- <div [class.alert]="true" [class.alert-primary]="false" role="alert" >
   This is an alert—check it out! - Sem NgClass
 </div>
 
@@ -63,5 +64,4 @@
   <option value="alert alert-info"> Info </option>
 </select>
 
-<p> Valor selecionado : {{ meuSelect.value }} </p>
-
+<p> Valor selecionado : {{ meuSelect.value }} </p> -->
