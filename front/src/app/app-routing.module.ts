@@ -14,7 +14,8 @@ const routes: Routes = [
   { path:'produtos' ,
     loadChildren : () => import ('./produtos/produtos.module').then ( m => m.ProdutosModule  ),
       canActivate : [ GuardService ]
-  }
+  },
+  { path: 'auth', loadChildren : () => import( './auth/auth.module' ).then ( m =>m.AuthModule) }
  
 ];
 
