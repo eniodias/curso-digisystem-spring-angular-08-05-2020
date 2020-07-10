@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProdutoService } from '../produto.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-produto-form',
@@ -14,11 +15,14 @@ export class ProdutoFormComponent implements OnInit {
   id_produto : number ;
   isEdition : boolean = false;
 
+  buttonText: string = 'Salvar';
+
   constructor(
     private activatedRoute : ActivatedRoute,
     private produtoService : ProdutoService,
     private router : Router,
-    private formBuilder : FormBuilder
+    private formBuilder : FormBuilder,
+    private toastr: ToastrService
       ) {
 
         this.formulario = this.formBuilder
@@ -43,6 +47,7 @@ export class ProdutoFormComponent implements OnInit {
             //é edição
             this.id_produto = rotaParams.id;
             this.isEdition = true;
+            this.buttonText = 'Alterar';
             this.get ( rotaParams.id );
           }
 
@@ -60,7 +65,11 @@ export class ProdutoFormComponent implements OnInit {
       .subscribe (
         (reponse) => {
           //alert ('Produto alterado com sucesso');
+          this.toastr.success ( 'Produto alterado com sucesso!');
           this.router.navigate (['produtos']);
+        },
+        ( error ) => {
+          this.toastr.error ( 'Erro ao alterar produto!' );
         }
       ) ;
     }
@@ -69,13 +78,15 @@ export class ProdutoFormComponent implements OnInit {
         .create ( this.formulario.value )
         .subscribe(
           (response) => {
+            this.toastr.success ( 'Produto criado com sucesso!');
             this.router.navigate (['produtos']);
+          },
+          ( error ) => {
+            this.toastr.error ( 'Erro ao criar produto!' );
           }
         );
     }
-
-
-
+  
   }
 
   isFieldValid( nomeField ){

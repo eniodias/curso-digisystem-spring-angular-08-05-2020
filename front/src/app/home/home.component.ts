@@ -15,6 +15,9 @@ export class HomeComponent implements OnInit {
   minhaVariavel = 'Angular 9';
   meuTexto;
 
+  hoje = new Date();
+  obj : { nome : 'Meu nome'};
+
   site = 'http://grandeporte.com.br';
 
   getMinhaVariavel(){

@@ -5,6 +5,22 @@
 
 <p> {{ getMinhaVariavel() }} </p>
 
+<p>
+
+  {{ 200 | currency:'BRL' }}
+
+</p>
+<P>
+
+  hoje :  {{ hoje | date:'dd/MM/yyyy'}}
+</P>
+
+<P>
+
+  {{ obj | json }}
+
+</P>
+
 
 <p> {{ 1 + 7 }} </p>
 
@@ -41,4 +57,4 @@
 
 <app-segundo> </app-segundo>
 
-<app-produtos-list></app-produtos-list>
+<!-- <app-produtos-list></app-produtos-list> -->

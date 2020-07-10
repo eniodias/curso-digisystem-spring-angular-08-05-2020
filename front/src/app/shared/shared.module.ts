@@ -4,7 +4,7 @@ import { FormErrorsComponent } from './form-errors/form-errors.component';
 import { HightlightDirective } from './diretivas/hightlight.directive';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -17,7 +17,7 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule, // required animations module
+    // BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot() // ToastrModule added
   ],
   exports : [
@@ -27,8 +27,8 @@ import { ToastrModule } from 'ngx-toastr';
     FormsModule,
     ReactiveFormsModule,
 
-    ToastrModule,
-	BrowserAnimationsModule
+    ToastrModule
+	// BrowserAnimationsModule
   ]
 })
 export class SharedModule { }

@@ -72,10 +72,15 @@ export class ProdutosListComponent implements OnInit {
           //achar posição do elemento no vetor de produtos
           let index = this.produtos.findIndex( x => { return ( x.id == id ) } );
           this.produtos.splice(index,1);
-
+          this.toastr.success ('Produto deletado com sucesso!');
+        },
+        (error) => {
+          this.toastr.error ( 'Erro ao deletar o produto!' );
         }
       );
   }
+
+
 
 }
 

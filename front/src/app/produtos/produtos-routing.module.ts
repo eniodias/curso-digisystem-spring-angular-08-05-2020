@@ -5,9 +5,9 @@ import { ProdutoFormComponent } from './produto-form/produto-form.component';
 
 const routes: Routes = [
 
-  { path: 'produtos' , component: ProdutosListComponent },
-  { path: 'produtos/novo' , component: ProdutoFormComponent },
-  { path: 'produtos/:id' , component: ProdutoFormComponent }
+  { path: '' , component: ProdutosListComponent },
+  { path: '/novo' , component: ProdutoFormComponent },
+  { path: '/:id' , component: ProdutoFormComponent }
 
 
 ];

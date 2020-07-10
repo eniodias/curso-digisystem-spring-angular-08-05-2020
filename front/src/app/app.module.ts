@@ -6,12 +6,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SegundoComponent } from './segundo/segundo.component';
 import { PrimeiroComponent } from './primeiro/primeiro.component';
-import { ProdutosModule } from './produtos/produtos.module';
+// import { ProdutosModule } from './produtos/produtos.module';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { SharedModule } from './shared/shared.module';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -25,8 +26,10 @@ import { SharedModule } from './shared/shared.module';
   ],
   imports: [
     BrowserModule,
+    CommonModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
-    ProdutosModule,
+    // ProdutosModule,
     ReactiveFormsModule,
     SharedModule
   ],

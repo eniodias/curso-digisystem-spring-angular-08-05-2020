@@ -7,7 +7,9 @@ import { PrimeiroComponent } from './primeiro/primeiro.component';
 const routes: Routes = [
   { path:'', component : HomeComponent },
   { path:'home', component : HomeComponent },
-  { path:'primeiro', component : PrimeiroComponent }
+  { path:'primeiro', component : PrimeiroComponent },
+
+  { path:'produtos' , loadChildren : () => import ('./produtos/produtos.module').then ( m => m.ProdutosModule  )  }
  
 ];
 
