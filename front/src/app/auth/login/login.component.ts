@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AutenticacaoService } from '../service/autenticacao.service';
 
 
 
@@ -21,13 +22,18 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-  ) { }
+    private autenticacaoService: AutenticacaoService
+  ) {
+
+  }
 
   ngOnInit(): void {
       this.loginForm = this.formBuilder.group({
         username: ['', Validators.required],
         password: ['', Validators.required]
     });
+
+    console.log ( this.loginForm);
   }
 
   get f() { return this.loginForm.controls; }
@@ -39,8 +45,15 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
         return;
     }
-
     this.loading = true;
+
+    this.autenticacaoService
+      .login ( this.loginForm.value.username, this.loginForm.value.password  )
+      .subscribe(
+        ( success ) => {
+          console.log ( success );
+        }
+      );
   }
 
 }

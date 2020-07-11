@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { PrimeiroComponent } from './primeiro/primeiro.component';
-import { GuardService } from './auth/guard.service';
+import { GuardService } from './auth/service/guard.service';
 
 
 const routes: Routes = [
@@ -10,15 +10,15 @@ const routes: Routes = [
   { path:'home', component : HomeComponent },
   { path:'primeiro', component : PrimeiroComponent },
 
- // lazy load
+  //lazy load
   { path:'produtos' ,
     loadChildren : () => import ('./produtos/produtos.module').then ( m => m.ProdutosModule  ),
       canActivate : [ GuardService ]
   },
-  { path: 'auth', loadChildren : () => import( './auth/auth.module' ).then ( m =>m.AuthModule) }
- 
-];
 
+  { path: 'auth', loadChildren : () => import( './auth/auth.module' ).then ( m =>m.AuthModule) }
+
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

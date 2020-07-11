@@ -1,13 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Produto } from './shared/produtos';
+import { environment } from 'src/environments/environment';
+
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProdutoService {
 
+  private produtoBarramento : Subject<Produto> = new Subject<Produto>();
 
-  constructor(private http : HttpClient  ) { }
+  url : string = `${environment.apiUrl}/produtos`;
+
+  constructor( private http : HttpClient ) { }
 
   getAll(){
     // return  [
@@ -16,36 +23,35 @@ export class ProdutoService {
     //   { id : 3, nome: 'Produto 3', preco: 300 },
     //   { id : 4, nome: 'Produto 4', preco: 400 }
     // ];
-
-
+    //RxJS
     //return this.http.get ( 'http://localhost:8080/produtos' );
-    return this.http.get ( 'https://api.fabrizioborelli.com.br/digisystem/produtos' );
+    return this.http.get<Produto[]> ( this.url );
   }
-
-  // get( id ){
-  //   return this.http.get ( 'http://localhost:8080/produtos/' + id );
-  // }
 
   get( id ){
     //return this.http.get ( `http://localhost:8080/produtos/${id}` );
-    return this.http.get ( `https://api.fabrizioborelli.com.br/digisystem/produtos/${id}` );
+    return this.http.get<Produto> ( `${this.url}/${id}` );
+  }
+
+  delete( id ){
+    //return this.http.get ( `http://localhost:8080/produtos/${id}` );
+    return this.http
+    .delete ( `${this.url}/${id}` );
   }
 
   update( id, produto ){
     return this.http
-    .put ( `https://api.fabrizioborelli.com.br/digisystem/produtos/${id}`, produto );
+    .put<Produto> ( `${this.url}/${id}`, produto );
   }
 
-
-    create( produto ){
+  create( produto ){
     return this.http
-    .post ( `https://api.fabrizioborelli.com.br/digisystem/produtos`, produto );
-  }
-  
- delete( id ){
-    //return this.http.get ( `http://localhost:8080/produtos/${id}` );
-    return this.http
-    .delete ( `https://api.fabrizioborelli.com.br/digisystem/produtos/${id}` );
+    .post <Produto> ( this.url, produto );
   }
 
+  getProdutoBarramento() : Subject<Produto>{
+    return this.produtoBarramento;
+  }
+
+  //SPA - Single Page application
 }
