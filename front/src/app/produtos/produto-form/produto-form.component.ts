@@ -22,7 +22,7 @@ export class ProdutoFormComponent implements OnInit {
     private produtoService : ProdutoService,
     private router : Router,
     private formBuilder : FormBuilder,
-    private toastr: ToastrService
+    private toastr : ToastrService
       ) {
 
         this.formulario = this.formBuilder
@@ -65,7 +65,7 @@ export class ProdutoFormComponent implements OnInit {
       .subscribe (
         (reponse) => {
           //alert ('Produto alterado com sucesso');
-          this.toastr.success ( 'Produto alterado com sucesso!');
+          this.toastr.warning ( 'Produto alterado com sucesso!');
           this.router.navigate (['produtos']);
         },
         ( error ) => {
@@ -78,6 +78,7 @@ export class ProdutoFormComponent implements OnInit {
         .create ( this.formulario.value )
         .subscribe(
           (response) => {
+            console.log ( response );
             this.produtoService.getProdutoBarramento().next( response );
             this.toastr.success ( 'Produto criado com sucesso!');
             this.router.navigate (['produtos']);
@@ -87,7 +88,6 @@ export class ProdutoFormComponent implements OnInit {
           }
         );
     }
-  
   }
 
   isFieldValid( nomeField ){

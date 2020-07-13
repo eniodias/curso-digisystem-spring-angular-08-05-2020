@@ -1,9 +1,8 @@
-
-
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { ProdutoService } from '../produto.service';
 import { Router } from '@angular/router';
-import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
+import { tokenReference } from '@angular/compiler';
 import { take } from 'rxjs/operators';
 
 @Component({
@@ -23,16 +22,21 @@ export class ProdutosListComponent implements OnInit {
     private produtoService : ProdutoService,
     private router : Router,
     private toastr: ToastrService
-     ) { }
+     ) {
+       //this.onTabelaClick();
+     }
+
+  ngDoCheck(){
+    // console.log ( 'sou um ciclo de vida!!');
+  }
 
   ngOnInit(): void {
     this.produtoService.getAll()
-      .pipe ( take(1) )
+      .pipe( take(1) )
       .subscribe(
         ( resp ) => {
           //console.log( resp );
           this.produtos = resp;
-          this.toastr.success ('Get All');
         },
         ( error ) => {
           console.log ( error );
@@ -41,12 +45,12 @@ export class ProdutosListComponent implements OnInit {
       );
 
       this.produtoService.getProdutoBarramento()
-      .subscribe(
-        ( obj ) => {
-          console.log ( 'Barramento' , obj);
-          this.toastr.info( 'Novo produto ' + obj.nome );
-        }
-      );
+        .subscribe(
+          ( obj ) => {
+            console.log ( 'Barramento de produtos' , obj);
+            this.toastr.info( 'Novo produto ' + obj.nome );
+          }
+        );
   }
 
   onTabelaClick(){
@@ -63,14 +67,9 @@ export class ProdutosListComponent implements OnInit {
     this.produtoSelecionadoPai = produto;
   }
 
-  receberEventoPai( valor ){
-    alert ( valor );
-  }
-
   editar( produto ){
     this.router.navigate ([ 'produtos', produto.id  ]);
   }
-
 
   delete ( id ){
     this.produtoService
@@ -90,8 +89,8 @@ export class ProdutosListComponent implements OnInit {
       );
   }
 
-
+  receberEventoPai( valor ){
+    alert ( valor );
+  }
 
 }
-
-

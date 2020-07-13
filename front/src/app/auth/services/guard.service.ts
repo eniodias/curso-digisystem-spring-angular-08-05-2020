@@ -21,8 +21,7 @@ export class GuardService implements CanActivate {
     }
 
     this.router.navigate ( ['/auth/login'] );
-    
-    return false;
 
+    return false;
   }
 }

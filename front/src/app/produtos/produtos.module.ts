@@ -4,22 +4,21 @@ import { CommonModule } from '@angular/common';
 import { ProdutosRoutingModule } from './produtos-routing.module';
 import { ProdutosListComponent } from './produtos-list/produtos-list.component';
 import { ProdutoDetalheComponent } from './produto-detalhe/produto-detalhe.component';
-import { HttpClientModule } from '@angular/common/http';
-import { ProdutoService } from './produto.service';
 import { ProdutoFormComponent } from './produto-form/produto-form.component';
-import { FormsModule, ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  declarations: [ProdutosListComponent, ProdutoDetalheComponent, ProdutoFormComponent],
+  declarations: [ ProdutosListComponent, ProdutoDetalheComponent, ProdutoFormComponent ],
   imports: [
     CommonModule,
     ProdutosRoutingModule,
+    //HttpClientModule,
+    //FormsModule,
+    //ReactiveFormsModule
     SharedModule
-
   ],
   exports:[
     ProdutosListComponent
-  ],providers:[ProdutoService,FormBuilder]
+  ]
 })
 export class ProdutosModule { }

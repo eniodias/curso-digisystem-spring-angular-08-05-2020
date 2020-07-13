@@ -24,7 +24,7 @@ export class ProdutoDetalheComponent implements OnInit {
   }
 
   notificarPai(){
-    this.notificador.emit(   this.produtoSelecionadoFilho?.id  ?? 'Id Inexistente'  ) ;
+    this.notificador.emit(  this.produtoSelecionadoFilho?.id  ?? 'ID inexistente' ) ;
   }
 
 }

@@ -13,10 +13,8 @@ export class PrimeiroComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
   goHome(){
     this.router.navigate ( [ '/home' ] );
   }
 
-  
 }

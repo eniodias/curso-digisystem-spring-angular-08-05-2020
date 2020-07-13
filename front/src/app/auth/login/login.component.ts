@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
         password: ['', Validators.required]
     });
 
-    console.log ( this.loginForm);
+    //console.log ( this.loginForm);
     this.returnUrl = '/home';
   }
 
@@ -52,8 +52,13 @@ export class LoginComponent implements OnInit {
       .login ( this.loginForm.value.username, this.loginForm.value.password  )
       .subscribe(
         ( success ) => {
-          console.log ( success );
-          this.router.navigate( [this.returnUrl] );
+          console.log ( 'success');
+          this.router.navigate( [ this.returnUrl ] );
+          console.log ( )
+        },
+        ( error ) => {
+          console.log ('error', error);
+          this.loading = false;
         }
       );
   }

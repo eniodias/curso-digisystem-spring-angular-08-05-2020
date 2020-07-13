@@ -8,10 +8,10 @@ import { ProdutoService } from '../produtos/produto.service';
 })
 export class HomeComponent implements OnInit {
 
-  //constructor ( private produtoService : ProdutoService){}
+  constructor(){}
 
   ngOnInit(){
- 
+
   }
 
   title = 'front alterando o texto de verdade';
@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   meuTexto;
 
   hoje = new Date();
-  obj : { nome : 'Meu nome'};
+  obj = { nome: 'Meu nome' };
 
   site = 'http://grandeporte.com.br';
 
