@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProdutoService } from '../produto.service';
 import { Router } from '@angular/router';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-produtos-list',
@@ -26,6 +27,7 @@ export class ProdutosListComponent implements OnInit {
 
   ngOnInit(): void {
     this.produtoService.getAll()
+      .pipe ( take(1) )
       .subscribe(
         ( resp ) => {
           //console.log( resp );

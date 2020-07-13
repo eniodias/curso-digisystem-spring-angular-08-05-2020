@@ -14,6 +14,9 @@ import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { CicloComponent } from './ciclo/ciclo.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtInterceptorService } from './auth/services/jwt-interceptor.service';
+
 
 @NgModule({
   declarations: [
@@ -35,7 +38,9 @@ import { CicloComponent } from './ciclo/ciclo.component';
     ReactiveFormsModule,
     SharedModule
   ],
-  providers: [],
+  providers: [
+    { provide : HTTP_INTERCEPTORS, useClass : JwtInterceptorService, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
